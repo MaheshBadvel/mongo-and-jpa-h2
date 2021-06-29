@@ -1,4 +1,4 @@
-package com.h2jpa.spring.exception;
+package com.springboot.items.exception;
 
 import java.util.Date;
 
@@ -7,10 +7,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+//@ControllerAdvice
+//public class GlobalExceptionHandler {
+//	
+//	@ExceptionHandler(Exception.class)
+//	public ResponseEntity<?> handleBqException(Exception exception, WebRequest request){
+//		ErrorDetails errorDetails = 
+//				new ErrorDetails(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), request.getDescription(false));
+//		return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
+//	
+//	}
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler  {
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<?> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
 		ErrorDetails errorDetails = new ErrorDetails(new Date(),HttpStatus.NOT_FOUND.value(), ex.getMessage(), request.getDescription(false));
@@ -25,13 +36,4 @@ public class GlobalExceptionHandler {
 
 	
 
-	
-//	@ExceptionHandler(Exception.class)
-//	public ResponseEntity<?> handleBqException(Exception exception, WebRequest request){
-//		ErrorDetails errorDetails = 
-//				new ErrorDetails(HttpStatus.NOT_FOUND.value(), exception.getMessage(), request.getDescription(false));
-//		return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
-//	
-//	}
-//	
 }

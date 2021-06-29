@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import com.springboot.items.exception.ResourceNotFoundException;
 import com.springboot.items.model.Item;
 import com.springboot.items.repository.ItemRepository;
 
@@ -15,13 +17,25 @@ public class ItemServiceImpl implements ItemService{
 	
 	@Autowired
 	ItemRepository itemRepository;
+	private int id;
 	
-	public int addItem(Item item) {
-		
-		Item saveItem=itemRepository.insert(item);
-		return saveItem.getId();
-			
+//	public int addItem(Item item) {
+//		
+//		Item saveItem=itemRepository.insert(item);
+//		return saveItem.getId();
+//			
+//	}
+	public Item addItem(Item item) throws ResourceNotFoundException{
+		Optional<Item> itemOptional=itemRepository.findById(item.getId());
+	if(itemOptional.isPresent())
+	{
+		throw new ResourceNotFoundException(ResourceNotFoundException.AlreadyExists(id));
 	}
+	else {
+		return itemRepository.save(item);
+	}
+	}
+	
 	public List<Item> getAllItems() {
 
 		List<Item> itemList = new ArrayList<>();

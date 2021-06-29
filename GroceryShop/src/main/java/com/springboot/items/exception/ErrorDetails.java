@@ -1,4 +1,4 @@
-package com.h2jpa.spring.exception;
+package com.springboot.items.exception;
 
 import java.util.Date;
 
@@ -15,18 +15,13 @@ public class ErrorDetails {
 		this.message = message;
 		this.details = details;
 	}
-	
-	
 	public Date getTimestamp() {
 		return timestamp;
 	}
-
-
+	
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-
-
 	public int getValue() {
 		return value;
 	}
@@ -47,6 +42,8 @@ public class ErrorDetails {
 	}
 	
 	
+
+
 
 
 

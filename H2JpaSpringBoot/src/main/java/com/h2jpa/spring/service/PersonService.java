@@ -5,12 +5,13 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.h2jpa.spring.exception.ResourceNotFoundException;
 import com.h2jpa.spring.model.Person;
 
 @Service
 public interface PersonService {
 	
-	public Person createPerson(Person person);
+	public Person createPerson (Person person) throws ResourceNotFoundException;
 	
 	public List<Person> createPerson(List<Person> persons);
 	
